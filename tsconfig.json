@@ -17,6 +17,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "preserve",
+    "experimentalDecorators": true,
     "baseUrl": "./",
     "paths": {
       "@": ["src/"]
