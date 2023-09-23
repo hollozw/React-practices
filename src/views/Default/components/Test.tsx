@@ -1,21 +1,28 @@
 import { Button } from "antd";
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useCallback, useRef, useState } from "react";
+
+import { asyncFunction } from "./hooks";
 
 const Test = forwardRef((props: any, intZiRef: any) => {
-  const intRefs = useRef(null);
-  useImperativeHandle(intZiRef, () => {
-    {
-      fn: () => {
-        const { current }: any = intRefs || {};
-        current?.focus();
-      },
-    }
+  const [state, setState] = useState(0);
+  const fn = useCallback(() => {
+    console.log(state);
+  }, [state]);
+  const [test, setTest] = useState(async () => {
+    const res = await asyncFunction();
+    return res;
   });
+  console.log(test, "使用state获取异步的数据");
   return (
     <>
-      <input type="text" placeholder="子组件" ref={intRefs}></input>
-      <Button onClick={fn}>按钮子</Button>
-      <div>123</div>
+      <Button onClick={fn}>按钮</Button>
+      <Button
+        onClick={() => {
+          setState(state + 1);
+        }}
+      >
+        state加1
+      </Button>
     </>
   );
 });
