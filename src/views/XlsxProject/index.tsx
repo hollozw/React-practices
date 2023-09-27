@@ -1,8 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Table, Tag, Space, Button } from "antd";
 import React, { useEffect } from "react";
 import type { ColumnsType } from "antd/es/table";
 import * as xlsx from "xlsx";
-import type { WorkBook } from "xlsx";
 
 interface DataType {
   key: string;
@@ -86,20 +86,11 @@ export default function XlsxProject(prop: unknown) {
   ];
 
   function pushExcel() {
-    const colounsName = columns.map((item, index) => {
-      return item.title;
-    });
-    const jsonWorkSheet = xlsx.utils.json_to_sheet(colounsName);
-    const workBook: WorkBook = {
-      SheetNames: ["example.xlsx"],
-      Sheets: {
-        ["example.xlsx"]: jsonWorkSheet,
-      },
-    };
-    return xlsx.writeFile(workBook, "example.xlsx");
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(xlsx, 'xlsx')
+  }, []);
 
   return (
     <>

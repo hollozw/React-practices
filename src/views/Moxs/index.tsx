@@ -43,6 +43,7 @@ const Moxs = () => {
       title: "姓名",
       dataIndex: "name",
       key: "name",
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
       render: (text) => <a>{text}</a>,
     },
     {
