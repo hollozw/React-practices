@@ -1,23 +1,30 @@
-import { Button } from "antd";
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import type { UploadProps } from "antd";
+import { Button, Upload } from "antd";
+import React from "react";
 
-const Test = forwardRef((props: any, intZiRef: any) => {
-  const intRefs = useRef(null);
-  useImperativeHandle(intZiRef, () => {
-    {
-      fn: () => {
-        const { current }: any = intRefs || {};
-        current?.focus();
+const Test = () => {
+  const props: UploadProps = {
+    onChange({ file, fileList }) {
+      if (file.status !== "uploading") {
+        console.log(file, fileList);
+      }
+    },
+    defaultFileList: [
+      {
+        uid: "1",
+        name: "xxx.png",
+        status: "done",
       },
-    }
-  });
+    ],
+  };
+
   return (
     <>
-      <input type="text" placeholder="子组件" ref={intRefs}></input>
-      <Button onClick={fn}>按钮子</Button>
-      <div>123</div>
+      <Upload {...props}>
+        <Button>上传文件中。。。</Button>
+      </Upload>
     </>
   );
-});
+};
 
 export default Test;
