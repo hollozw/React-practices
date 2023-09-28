@@ -1,8 +1,15 @@
-import React, { useRef } from "react";
-import Test from "./components/Test";
+import React, { useEffect } from "react";
+// import Test from "./components/Test";
 
 const Default = () => {
-  return <Test></Test>;
+  useEffect(()=>{
+
+  }, [])
+  return (
+    <>
+      <div>123</div>
+    </>
+  );
 };
 
 export default Default;
