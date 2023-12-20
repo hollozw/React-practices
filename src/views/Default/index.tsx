@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from 'react';
 
 const Default = () => {
-  return (
-    <>
-      <div>default</div>
-    </>
-  );
+	return (
+		<>
+			<div>default</div>
+		</>
+	);
 };
 
 export default Default;

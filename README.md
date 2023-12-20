@@ -1,73 +1,61 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-***
 ### 仅仅用来进行练习
+***
+#### 配置react-ts-babel-webpack
+1. 先将webpack的文件获取
+
+```
+npm run eject
+```
+
+2. 下载所需要的文件
+
+```
+# 下载babel相关的文件
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-typescript
+
+# 下载ts相关文件
+npm install typescript
+
+```
+3. 创建文件babel.config.json和tsconfig.json文件,并写相关配置
+
+#### 项目在热更新以及打包的具体流程
+> 该项目使用：webpack,typescript,babel等
+- 保存代码：首先，你需要将你的代码更改保存下来。
+编译TypeScript代码：Webpack使用TypeScript编译器将
+- TypeScript代码编译为JavaScript代码。编译过程中，Webpack会解析TypeScript代码并生成一个JavaScript的AST（抽象语法树）。转换JavaScript代码：Babel使用其转换规则将生成的
+- JavaScript AST转换为纯ES5的JavaScript代码。这个转换过程包括将ES6+的语法转换为ES5，以及将一些特定的代码风格或模式转换为其他形式。
+- 打包JavaScript代码：Webpack将转换后的JavaScript代码打包成一个或多个bundle。这个过程包括将依赖关系图中的模块链接起来，并生成一个或多个bundle文件。
+- 更新页面：当Webpack完成打包后，它会将生成的bundle文件输出到指定的输出目录（通常是dist目录）。然后，你可以通过浏览器访问该目录下的index.html文件来查看更新后的页面。
+
+
+#### 配置@路由别名
+- 该项目为webpack来打包，配置效果需要在webpack中配置
+``` javaScript
+resolve : {
+  alias: {
+    "@": 'src',
+  }
+}
+```
+- 但是，该项目使用到的项目为ts，所以需要在ts中也配置路由不然会存在标红报错(应该只是检查的效果，目前是这样认为的23-12-20)
+``` typeScript
+compilerOptions {
+  baseUrl: ".",
+  paths: {
+    "@/*": ["src/*"]
+  }
+}
+```
+
+#### 配置prettier格式化和eslint格式检查
+- 安装就行
+
+``` shell
+npm install prettier -D
+npm install eslint -D
+```
+
+- 后配置相应的文件:
+  - .prettierignore和.prettierrc.js文件
+  - .eslintignore和.eslint.js
