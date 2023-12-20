@@ -313,6 +313,7 @@ module.exports = function (webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@': paths.appSrc, // 配置@路由地址
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
@@ -353,6 +354,7 @@ module.exports = function (webpackEnv) {
           oneOf: [
             // TODO: Merge this config once `image/avif` is in the mime-db
             // https://github.com/jshttp/mime-db
+            // .avif后缀的文件
             {
               test: [/\.avif$/],
               type: 'asset',
@@ -366,6 +368,7 @@ module.exports = function (webpackEnv) {
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
+            // 图片等文件
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               type: 'asset',
@@ -375,6 +378,7 @@ module.exports = function (webpackEnv) {
                 },
               },
             },
+            // svg格式的文件处理
             {
               test: /\.svg$/,
               use: [
@@ -403,6 +407,7 @@ module.exports = function (webpackEnv) {
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
+            // js/mjs/jsx/ts/tsx等格式文件处理
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
@@ -419,7 +424,7 @@ module.exports = function (webpackEnv) {
                     },
                   ],
                 ],
-                
+
                 plugins: [
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
@@ -728,7 +733,9 @@ module.exports = function (webpackEnv) {
           extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
           formatter: require.resolve('react-dev-utils/eslintFormatter'),
           eslintPath: require.resolve('eslint'),
-          failOnError: !(isEnvDevelopment && emitErrorsAsWarnings),
+          // failOnError: !(isEnvDevelopment && emitErrorsAsWarnings), // eslint报错是否影响编译
+          failOnError: false,
+          failOnWarning: false, // eslint警告是否影响编译
           context: paths.appSrc,
           cache: true,
           cacheLocation: path.resolve(

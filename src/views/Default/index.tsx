@@ -1,15 +1,11 @@
-import React, { useEffect } from "react";
-// import Test from "./components/Test";
+import React, { useEffect } from 'react';
 
 const Default = () => {
-  useEffect(()=>{
-
-  }, [])
-  return (
-    <>
-      <div>123</div>
-    </>
-  );
+	return (
+		<>
+			<div>default</div>
+		</>
+	);
 };
 
 export default Default;
