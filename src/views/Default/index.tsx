@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 const Default = () => {
 	return (
 		<>
-			<div>default</div>
+			<div>123</div>
 		</>
 	);
 };

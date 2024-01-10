@@ -1,10 +1,20 @@
+const Form = (props: any) => {
+	const { children } = props;
+	return <>{children}</>;
+};
 
-function Form(props: unknown) {
+Form.Item = (props: any) => {
+	return <>Item</>;
+};
+
+const FormItems = () => {
 	return (
 		<>
-			<div>Form</div>
+			<Form>
+				<Form.Item value = {123}></Form.Item>
+			</Form>
 		</>
-	)
-}
+	);
+};
 
-export default Form
+export default FormItems;
