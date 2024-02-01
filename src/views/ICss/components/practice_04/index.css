@@ -61,3 +61,15 @@ body {
 .stop:hover ~ .animation {
 	animation-play-state: paused;
 }
+
+.box_2 {
+	.father {
+		font-weight: 200;
+		.unset {
+			font-weight: unset;
+		}
+		.revert {
+			font-weight: revert;
+		}
+	}
+}
