@@ -1,16 +1,9 @@
-import * as React from 'react';
-import { utilFun } from '@/utils/index';
-
 const Default = () => {
-	React.useEffect(() => {
-		const a = utilFun.getType({});
-		console.log(a, 'a')
-	}, []);
 	return (
 		<>
-			<div>123</div>
+			<div style={{ width: 'auto', height: '100vh' }}></div>
 		</>
-	);
-};
+	)
+}
 
-export default Default;
+export default Default

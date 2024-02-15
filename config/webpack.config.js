@@ -370,14 +370,29 @@ module.exports = function (webpackEnv) {
 						// smaller than specified limit in bytes as data URLs to avoid requests.
 						// A missing `test` is equivalent to a match.
 						// 图片等文件
+						/**
+						 * name: '[name].[hash].[ext]'
+						 * [name] 将被替换为 example。
+						 * [hash] 将被替换为根据文件内容生成的唯一哈希值，如 abc123。
+						 * [ext] 将被替换为文件的原始扩展名，如 .jpg。
+						 * 最终的输出文件名将类似于 example.abc123.jpg，其中 example 是原始文件的名称，abc123 是根据文件内容生成的唯一哈希值，.jpg 是原始文件的扩展名。
+						 */
 						{
-							test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+							test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.jpg$/],
 							type: 'asset',
 							parser: {
 								dataUrlCondition: {
 									maxSize: imageInlineSizeLimit,
 								},
 							},
+							// use: {
+							// 	loader: 'file-loader', // 引入这个文件后图片无法显示
+							// 	options: {
+							// 		name: '[name].[hash].[ext]',
+							// 		outputPath: 'images',
+							// 		publicPath: '/images',
+							// 	},
+							// },
 						},
 						// svg格式的文件处理
 						{
@@ -425,6 +440,7 @@ module.exports = function (webpackEnv) {
 										},
 									],
 								],
+								exclude: /node_modules/,
 
 								plugins: [
 									isEnvDevelopment &&
