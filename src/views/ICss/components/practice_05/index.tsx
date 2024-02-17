@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import './index.css'
 import { fn } from './test'
-import img from '@/asset/example.jpg'
+// import img from '@/asset/example.jpg'
 /**
  * @practice1
  */

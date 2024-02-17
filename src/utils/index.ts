@@ -1,1 +1,1 @@
-export { default as utilFun } from './Function';
+export { getType, prototypeExtend } from './Function/type'
