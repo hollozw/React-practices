@@ -1,29 +1,24 @@
-import { useEffect } from 'react'
-import { prototypeExtend } from '@/utils'
-import { SlideLoopImg } from '@/modes/index'
+import { useEffect, createContext, useState } from 'react'
+
+import TestSon1 from './components/TestSon1'
+import TestSon2 from './components/TestSon2'
+
+const TestSon1Provoid = createContext(0)
+const TestSon2Provoid = createContext(0)
 
 const Default = () => {
-	useEffect(() => {
-		// const penguin = prototypeExtend(
-		// 	{
-		// 		speed: 20,
-		// 		swim: function () {
-		// 			console.log('游泳速度' + this.speed)
-		// 		},
-		// 		run: function () {
-		// 			console.log('跑了')
-		// 		},
-		// 	},
-		// 	{}
-		// )
-		// console.log(penguin, 'penguin')
+	useEffect(() => {}, [])
+	const [a, setA] = useState(0)
+	const [b, setB] = useState(0)
 
-		const a = new SlideLoopImg([], '')
-		console.log(a, 'a')
-	}, [])
 	return (
 		<>
-			<div></div>
+			<TestSon1Provoid.Provider value={a}>
+				<TestSon2Provoid.Provider value={b}>
+					<TestSon1 Change={() => setA(1)}></TestSon1>
+					<TestSon2></TestSon2>
+				</TestSon2Provoid.Provider>
+			</TestSon1Provoid.Provider>
 		</>
 	)
 }

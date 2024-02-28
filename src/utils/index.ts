@@ -1,1 +1,1 @@
-export { getType, prototypeExtend } from './Function/type'
+export { getType, prototypeExtend } from './Function/index'
