@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Test2 from './test2'
+import Test from './test4/index'
+// import Test from './test3/index'
 
-const Test: React.FC = () => {
-	return <Test2></Test2>
+const TestAll: React.FC = () => {
+	return <Test></Test>
 }
 
-export default Test
+export default TestAll
