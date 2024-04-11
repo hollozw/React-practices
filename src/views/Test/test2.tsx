@@ -1,7 +1,7 @@
-import { Space, Switch, Table } from 'antd'
+import { Checkbox, Space, Switch, Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import type { TableRowSelection } from 'antd/es/table/interface'
 import React, { useState } from 'react'
+import _ from 'lodash'
 
 interface DataType {
 	key: React.ReactNode
@@ -12,13 +12,59 @@ interface DataType {
 }
 
 function Test() {
-	const [checkStrictly, setCheckStrictly] = useState(false)
+	const [checked, setChecked] = useState<number[]>([])
 
+	function getValue(value: any): number[] {
+		const { children, key } = value || ({} as any)
+		const data: number[] = []
+		if (children) {
+			data.push(
+				...children.map((item) => {
+					return getValue(item)
+				})
+			)
+		} else {
+			data.push(key as number)
+		}
+		return data
+	}
 	const columns: ColumnsType<DataType> = [
 		{
 			title: 'Name',
 			dataIndex: 'name',
 			key: 'name',
+			render: (text: string, record: unknown) => {
+				let data = _.flattenDeep(getValue(record))
+				return (
+					<>
+						<Checkbox
+							style={{ marginRight: 10 }}
+							onClick={() => {
+								setChecked((pre) => {
+									const { children } = record || ({} as any)
+									const setPre = new Set(pre)
+									if(children) {
+										const value = _.difference(data, pre)
+										if(value.length !== 0) {
+											data = value
+										}
+									}
+									data.forEach((item: number) => {
+										if (!setPre.has(item)) {
+											setPre.add(item)
+										} else {
+											setPre.delete(item)
+										}
+									})
+									return [...setPre]
+								})
+							}}
+							checked={checked.includes((record as { key: number })?.key)}
+						></Checkbox>
+						{text}
+					</>
+				)
+			},
 		},
 		{
 			title: 'Age',
@@ -99,36 +145,17 @@ function Test() {
 		},
 	]
 
-	const rowSelection: TableRowSelection<DataType> = {
-		onChange: (selectedRowKeys, selectedRows) => {
-			console.log(
-				`selectedRowKeys: ${selectedRowKeys}`,
-				'selectedRows: ',
-				selectedRows
-			)
-		},
-		onSelect: (record, selected, selectedRows) => {
-			console.log(record, selected, selectedRows)
-		},
-		onSelectAll: (selected, selectedRows, changeRows) => {
-			console.log(selected, selectedRows, changeRows)
-		},
-		renderCell: () => {
-			return <></>
-		},
-	}
-
 	return (
 		<>
-			<Space align="center" style={{ marginBottom: 16 }}>
-				CheckStrictly:{' '}
-				<Switch checked={checkStrictly} onChange={setCheckStrictly} />
-			</Space>
-			<Table
-				columns={columns}
-				rowSelection={{ ...rowSelection, checkStrictly }}
-				dataSource={data}
-			/>
+			<Table columns={columns} dataSource={data} />
+		</>
+	)
+}
+
+function NewCheckBox() {
+	return (
+		<>
+			<Checkbox></Checkbox>
 		</>
 	)
 }
