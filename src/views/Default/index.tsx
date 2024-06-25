@@ -1,26 +1,32 @@
-import { useEffect, createContext, useState } from 'react'
+import React from 'react'
+import { makeObservable, observable, observe, computed } from 'mobx'
+import { Observer } from 'mobx-react-lite'
+import { Button } from 'antd'
+import data from './test'
 
-import TestSon1 from './components/TestSon1'
-import TestSon2 from './components/TestSon2'
-
-const TestSon1Provoid = createContext(0)
-const TestSon2Provoid = createContext(0)
-
-const Default = () => {
-	useEffect(() => {}, [])
-	const [a, setA] = useState(0)
-	const [b, setB] = useState(0)
-
+const MyComponent = () => {
+	console.debug('MyComponent')
 	return (
-		<>
-			<TestSon1Provoid.Provider value={a}>
-				<TestSon2Provoid.Provider value={b}>
-					<TestSon1 Change={() => setA(1)}></TestSon1>
-					<TestSon2></TestSon2>
-				</TestSon2Provoid.Provider>
-			</TestSon1Provoid.Provider>
-		</>
+		<Observer>
+			{() => (
+				<div>
+					<Button
+						onClick={() => {
+							data.setfilter('中国6')
+						}}
+					>
+						按钮
+					</Button>
+					{data.displayList.map((item) => {
+						return <p key={item.address}>{item.address}</p>
+					})}
+					{data.isTuixiou ? '是退休' : '不是退休'}
+					<p>这是一个React的Class组件。</p>
+					{}
+				</div>
+			)}
+		</Observer>
 	)
 }
 
-export default Default
+export default MyComponent
