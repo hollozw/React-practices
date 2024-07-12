@@ -1,0 +1,48 @@
+/**
+  原来的实现方法，伪元素
+  如果改变背景颜色就会导致效果不佳，所以建议使用mask方法
+*/
+.g-container {
+  width: 300px;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, #fff);
+  }
+}
+
+ul {
+  box-sizing: border-box;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 5px;
+  overflow-x: scroll;
+  justify-content: space-between;
+  li {
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1px 3px;
+  }
+  li:hover {
+    background-color: #4e4b4b;
+    cursor: pointer;
+    color: white;
+  }
+}
+
+/**
+  使用mask实现
+*/
+.g-container-method2 {
+  width: 300px;
+  ul{
+    mask: linear-gradient(90deg, #000 70%, transparent);
+  }
+}
