@@ -59,3 +59,18 @@ npm install eslint -D
 - 后配置相应的文件:
   - .prettierignore和.prettierrc.js文件
   - .eslintignore和.eslint.js
+
+#### 在ts文件中使用.png等其他格式的文件
+- 打包部分：webpack配置图片相关的loader
+- 声明部分：需要先在全局中声明.png这个文件，防止ts报错提示
+
+
+- 全局的.d.ts文件中都可以声明
+``` typeScript
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.gif';
+declare module '*.bmp';
+declare module '*.tiff';
+```

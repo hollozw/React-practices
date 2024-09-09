@@ -18,7 +18,7 @@
 		"noEmit": true, //报错忽略
 		"noEmitOnError": true, // 发送错误时不输出任何文件
 		"strictNullChecks": true,
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"experimentalDecorators": true,
 		"baseUrl": ".",
 		"paths": {
