@@ -67,7 +67,6 @@ class MyComponentData {
 	}
 
 	public setfilter(filter) {
-    debugger
 		this.filter = filter
 	}
 }
