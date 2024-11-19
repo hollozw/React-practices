@@ -1,20 +1,16 @@
-import React, { useEffect, useRef } from 'react'
-import CreateCanvas from './classCanvas/index'
+import './index.sass';
 
 function Canvas() {
-	const divRef = useRef(null)
-	console.log(divRef.current)
-	const canvasRef = useRef({})
-	useEffect(() => {
-		canvasRef.current = new CreateCanvas('#canvas')
-	}, [])
 	return (
 		<>
-			<div ref={divRef} style={{ width: '100%', height: '100vh' }}>
-				<canvas id="canvas"></canvas>
+			<div style={{ width: '100%', height: '100vh' }} className="ICss">
+				{/* 不同颜色的边框 */}
+				<div className="border-first">
+					<div style={{position: "absolute", zIndex: "100", width: '100%', height: "100%"}}>123</div>
+				</div>
 			</div>
 		</>
-	)
+	);
 }
 
-export default Canvas
+export default Canvas;

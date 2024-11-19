@@ -5,25 +5,26 @@
 		"lib": ["esnext", "dom"],
 		"allowImportingTsExtensions": true,
 		"skipLibCheck": true,
-		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
-		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"module": "es2015",
+		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"esModuleInterop": true,
 		"isolatedModules": true,
 		"noEmit": true, //报错忽略
 		"noEmitOnError": true, // 发送错误时不输出任何文件
-		"jsx": "react-jsx",
+		"strictNullChecks": true,
+		"jsx": "preserve",
 		"experimentalDecorators": true,
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"]
 		}
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }

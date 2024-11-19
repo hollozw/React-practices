@@ -1,0 +1,32 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+/* 以下方法具有兼容性问题想要浏览器具有webkit内核 */
+.box {
+	width: 250px;
+	height: 200px;
+	border: 1px solid black;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+	.fontStyle {
+		font-size: 20px;
+		display: inline-block;
+		text-align: left;
+
+		/* 多行省略的部分 */
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+    /* 将对象作为弹性伸缩盒子模型显示,可能存在兼容性问题 */
+		display: -webkit-box;
+    /* 限制在一个块元素显示的文本的行数 */
+		-webkit-line-clamp: 4;
+    /* 规定框的子元素应该被水平或垂直排列 */
+		-webkit-box-orient: vertical;
+	}
+}

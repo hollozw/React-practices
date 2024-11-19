@@ -1,16 +1,9 @@
 class CreateCanvas {
-	// protected readonly rootDOM: CanvasRenderingContext2D;
-	constructor(rootDOMID: string) {
-		// const rootID = document.querySelector(rootDOMID) as HTMLCanvasElement;
-		// if (rootID) {
-		// 	this.rootDOM = rootID.getContext('2d');
-		// 	console.log(this.rootDOM);
-		// }
+	protected readonly rootDOM: CanvasRenderingContext2D;
+	constructor(ReactRenderDOM: CanvasRenderingContext2D) {
+		this.rootDOM = ReactRenderDOM;
 	}
-	screenFill(fillDOM: Element) {
-		// const { clientWidth, clientHeight } = fillDOM;
-		// console.log(clientHeight, clientHeight);
-	}
+	screenFill(fillDOM: Element) {}
 }
 
 export default CreateCanvas;
